@@ -22,6 +22,9 @@ resource "aws_instance" "basic_vm" {
     volume_type           = var.root_volume_type
     iops                  = (var.root_volume_type == "io1" || var.root_volume_type == "io2") ? 100 : null
   }
+  volume_tags = {
+    testTag = "shubham"
+  }
 }
 resource "aws_ebs_volume" "ebs_volumes" {
   for_each = { for idx, disk in var.disks : idx => disk }
